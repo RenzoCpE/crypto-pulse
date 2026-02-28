@@ -2,11 +2,12 @@ import { useState, useRef, useEffect } from 'react';
 import { useFetchCrypto } from '../hooks/useFetchCrypto';
 import { useCrypto } from '../context/CryptoContext';
 import MarketChart from '../components/MarketChart';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const Home = () => {
     const { loading, error } = useFetchCrypto();
     const { coins } = useCrypto();
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useLocalStorage('cryptoSearch', '');
     const searchRef = useRef(null);
 
     // useRef: auto-focus the search input on page load
